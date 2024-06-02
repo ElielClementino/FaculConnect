@@ -1,4 +1,5 @@
 using Data;
+using Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,5 +20,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Endpoint configurations
+app.RegisterAccountEndpoint();
 
 app.Run();
