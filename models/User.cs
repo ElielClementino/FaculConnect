@@ -4,13 +4,13 @@ namespace models;
 
 public class User {
 
-    public User(String username, String password, String email) {
+    public User(string username, string password, string email) {
         Username = username;
         Password = password;
         Email = email;
         CreatedAT = DateTime.UtcNow;
     }
-    
+
     [Key]
     public int UserId { get; set; }
 
