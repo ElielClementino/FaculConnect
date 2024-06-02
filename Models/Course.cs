@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace models;
+namespace Models;
 
 public class Course {
 

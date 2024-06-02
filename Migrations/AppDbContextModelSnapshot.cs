@@ -22,7 +22,7 @@ namespace FaculConnect.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("models.Course", b =>
+            modelBuilder.Entity("Models.Course", b =>
                 {
                     b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd()
@@ -50,7 +50,30 @@ namespace FaculConnect.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("models.Discipline", b =>
+            modelBuilder.Entity("Models.CourseDiscipline", b =>
+                {
+                    b.Property<int>("CourseDisciplineId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CourseDisciplineId"));
+
+                    b.Property<int?>("CourseId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("DisciplineId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CourseDisciplineId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("DisciplineId");
+
+                    b.ToTable("CourseDisciplines");
+                });
+
+            modelBuilder.Entity("Models.Discipline", b =>
                 {
                     b.Property<int>("DisciplineId")
                         .ValueGeneratedOnAdd()
@@ -68,7 +91,7 @@ namespace FaculConnect.Migrations
                     b.ToTable("Disciplines");
                 });
 
-            modelBuilder.Entity("models.Student", b =>
+            modelBuilder.Entity("Models.Student", b =>
                 {
                     b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
@@ -119,7 +142,7 @@ namespace FaculConnect.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("models.User", b =>
+            modelBuilder.Entity("Models.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -150,13 +173,28 @@ namespace FaculConnect.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("models.Student", b =>
+            modelBuilder.Entity("Models.CourseDiscipline", b =>
                 {
-                    b.HasOne("models.Course", "Course")
+                    b.HasOne("Models.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId");
 
-                    b.HasOne("models.User", "User")
+                    b.HasOne("Models.Discipline", "Discipline")
+                        .WithMany()
+                        .HasForeignKey("DisciplineId");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Discipline");
+                });
+
+            modelBuilder.Entity("Models.Student", b =>
+                {
+                    b.HasOne("Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId");
+
+                    b.HasOne("Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 

@@ -25,7 +25,7 @@ namespace FaculConnect.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("models.Course", b =>
+            modelBuilder.Entity("Models.Course", b =>
                 {
                     b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace FaculConnect.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("models.Student", b =>
+            modelBuilder.Entity("Models.Student", b =>
                 {
                     b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
@@ -99,7 +99,7 @@ namespace FaculConnect.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("models.User", b =>
+            modelBuilder.Entity("Models.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -130,9 +130,9 @@ namespace FaculConnect.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("models.Student", b =>
+            modelBuilder.Entity("Models.Student", b =>
                 {
-                    b.HasOne("models.User", "User")
+                    b.HasOne("Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 

@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using models;
+using Models;
 
 namespace Data;
 
@@ -9,6 +9,7 @@ public class AppDbContext : DbContext {
     public DbSet<Student> Students { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<Discipline> Disciplines { get; set; }
+    public DbSet<CourseDiscipline> CourseDisciplines { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         var configuration = new ConfigurationBuilder()
