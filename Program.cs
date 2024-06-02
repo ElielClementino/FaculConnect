@@ -22,5 +22,6 @@ app.UseHttpsRedirection();
 
 // Endpoint configurations
 app.RegisterAccountEndpoint();
+app.LoginAccountEndpoint();
 
 app.Run();
