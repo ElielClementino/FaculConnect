@@ -8,6 +8,8 @@ public class AppDbContext : DbContext {
     public DbSet<User> Users { get; set; }
     public DbSet<Student> Students { get; set; }
 
+    public DbSet<Course> Courses { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         var configuration = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
