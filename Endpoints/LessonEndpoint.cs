@@ -20,6 +20,13 @@ namespace Endpoints {
                     return Results.Problem($"Ocorreu um erro na criação da aula: {e.Message}");
                 }
             });
+
+            lessonEndpoint.MapGet("{disciplineId:int}", async (int disciplineId, AppDbContext context, CancellationToken ct) => {
+                var lessonService = new LessonService(context);
+                var lessons = await lessonService.GetLessonsAsync(disciplineId, ct);
+
+                return Results.Ok(lessons);
+            });
         }
     }
 }

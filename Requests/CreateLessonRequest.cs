@@ -1,4 +1,4 @@
 namespace Requests;
 
-public record CreateLessonRequest(int LessonId, string Name, int? DisciplineId) {}
+public record CreateLessonRequest(string Name, int? DisciplineId) {}
 
