@@ -2,6 +2,7 @@ using Data;
 using Dtos;
 using Models;
 using Requests;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services {
 
@@ -28,6 +29,14 @@ namespace Services {
             } catch (Exception e) {
                 return (false, null, $"Ocorreu um erro ao criar a disciplina: {e.Message}");
             };
+        }
+        public async Task<List<DisciplineDto>> GetDisciplinesAsync(int courseId, int semester, CancellationToken ct) {
+            var disciplines = await _context.Disciplines
+                .Where(discipline => discipline.CourseId == courseId && discipline.Semester == semester)
+                .Select(discipline => new DisciplineDto(discipline.DisciplineId, discipline.Name, discipline.Semester, discipline.CourseId))
+                .ToListAsync(ct);
+
+            return disciplines;
         }
     }
 }

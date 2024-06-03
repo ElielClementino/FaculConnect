@@ -21,6 +21,11 @@ namespace Endpoints {
                     return Results.Problem($"Ocorreu um erro ao efetuar o cadastro  da disciplina: {e}");
                 }
             });
+            disciplineEndpoint.MapGet("{courseId:int}/{semester:int}", async (int courseId, int semester, AppDbContext context, CancellationToken ct) => {
+                var disciplineService = new DisciplineService(context);
+                var disciplines = await disciplineService.GetDisciplinesAsync(courseId, semester, ct);
+                return Results.Ok(disciplines);
+            });
         }
     }
 }
