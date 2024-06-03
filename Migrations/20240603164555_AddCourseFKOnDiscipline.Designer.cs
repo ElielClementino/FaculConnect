@@ -3,6 +3,7 @@ using System;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FaculConnect.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240603164555_AddCourseFKOnDiscipline")]
+    partial class AddCourseFKOnDiscipline
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,6 +53,29 @@ namespace FaculConnect.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("Models.CourseDiscipline", b =>
+                {
+                    b.Property<int>("CourseDisciplineId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CourseDisciplineId"));
+
+                    b.Property<int?>("CourseId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("DisciplineId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CourseDisciplineId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("DisciplineId");
+
+                    b.ToTable("CourseDisciplines");
+                });
+
             modelBuilder.Entity("Models.Discipline", b =>
                 {
                     b.Property<int>("DisciplineId")
@@ -65,9 +91,6 @@ namespace FaculConnect.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
-
-                    b.Property<int>("Semester")
-                        .HasColumnType("integer");
 
                     b.HasKey("DisciplineId");
 
@@ -179,6 +202,21 @@ namespace FaculConnect.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Models.CourseDiscipline", b =>
+                {
+                    b.HasOne("Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId");
+
+                    b.HasOne("Models.Discipline", "Discipline")
+                        .WithMany()
+                        .HasForeignKey("DisciplineId");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Discipline");
                 });
 
             modelBuilder.Entity("Models.Discipline", b =>
