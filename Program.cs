@@ -26,5 +26,6 @@ app.LoginAccountEndpoint();
 app.CreateStudentEndpoint();
 app.CreateDisciplineEndpoint();
 app.CreateCourseEndpoint();
+app.CreateCourseDisciplineEndpoint();
 
 app.Run();
