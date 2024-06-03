@@ -2,6 +2,7 @@ using Data;
 using Dtos;
 using Models;
 using Requests;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services {
 
@@ -26,6 +27,14 @@ namespace Services {
             } catch (Exception e) {
                 return (false, null, $"Ocorreu um erro ao criar o curso: {e.Message}");
             };
+        }
+
+        public async Task<List<CourseDto>> GetCoursesAsync(CancellationToken ct) {
+            var courses = await _context.Courses
+            .Select(course => new CourseDto(course.CourseId, course.Name, course.Description, course.Price, course.Availability))
+            .ToListAsync(ct);
+
+            return courses;
         }
     }
 }

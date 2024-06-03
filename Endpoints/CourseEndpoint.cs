@@ -21,6 +21,17 @@ namespace Endpoints {
                     return Results.Problem($"Ocorreu um erro ao efetuar o cadastro  do curso: {e}");
                 }
             });
+            CourseEndpoint.MapGet("/list", async (AppDbContext context, CancellationToken ct) => {
+                try {
+                    var courseService = new CourseService(context);
+                    var courses = await courseService.GetCoursesAsync(ct);
+
+                    return Results.Ok(courses);
+                }
+                catch (Exception e) {
+                    return Results.Problem($"Ocorreu um erro ao listar os cursos: {e}");
+                }
+            });
         }
     }
 }
