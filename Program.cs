@@ -24,5 +24,6 @@ app.UseHttpsRedirection();
 app.RegisterAccountEndpoint();
 app.LoginAccountEndpoint();
 app.CreateStudentEndpoint();
+app.CreateDisciplineEndpoint();
 
 app.Run();
