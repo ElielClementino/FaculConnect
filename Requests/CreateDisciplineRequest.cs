@@ -1,3 +1,3 @@
-namespace Routes;
+namespace Requests;
 
 public record CreateDisciplineRequest(string Name) {}

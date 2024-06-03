@@ -1,6 +1,6 @@
 using Data;
 using Services;
-using Dtos;
+using Requests;
 
 namespace Endpoints {
     public static class CourseDisciplineEndpoint {

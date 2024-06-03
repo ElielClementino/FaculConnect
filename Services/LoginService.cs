@@ -1,7 +1,6 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
-using Models;
-using Endpoints;
+using Requests;
 using Dtos;
 
 namespace Services {

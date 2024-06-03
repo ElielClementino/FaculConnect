@@ -1,3 +1,3 @@
-namespace Dtos {
+namespace Requests {
     public record CreateCourseDisciplineRequest(int CourseId, int DisciplineId);
 }

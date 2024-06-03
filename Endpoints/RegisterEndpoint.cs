@@ -1,5 +1,6 @@
 using Data;
 using Services;
+using Requests;
 
 namespace Endpoints {
     public static class RegisterEndpoint {

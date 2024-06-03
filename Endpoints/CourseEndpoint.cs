@@ -1,6 +1,6 @@
 using Data;
-using Routes;
 using Services;
+using Requests;
 
 namespace Endpoints {
     public static class CourseEndpoint {
