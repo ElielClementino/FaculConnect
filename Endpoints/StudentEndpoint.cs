@@ -13,7 +13,7 @@ namespace Endpoints {
                     var result = await studentService.StudentAsync(request, ct);
 
                     if (result.IsSuccess) {
-                        return Results.Created($"/register/{result.StudentDto?.StudentId}", result.StudentDto);
+                        return Results.Created($"/student/{result.StudentDto?.StudentId}", result.StudentDto);
                     }
 
                     return Results.Problem(detail: result.ErrorMessage);

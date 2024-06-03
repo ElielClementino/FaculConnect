@@ -13,7 +13,7 @@ namespace Endpoints {
                     var result = await disciplineService.DisciplineAsync(request, ct);
 
                     if (result.IsSuccess) {
-                        return Results.Created($"/register/{result.DisciplineDto?.DisciplineId}", result.DisciplineDto);
+                        return Results.Created($"/discipline/{result.DisciplineDto?.DisciplineId}", result.DisciplineDto);
                     }
 
                     return Results.Problem(detail: result.ErrorMessage);
