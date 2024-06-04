@@ -71,9 +71,9 @@ export default {
   data() {
     return {
       User: {
-        Username: '',
-        Email: '',
-        Password: ''
+        Username: null,
+        Email: null,
+        Password: null
       }
     }
   },
@@ -92,7 +92,7 @@ export default {
     },
      async registerAccount() {
         try {
-            if(this.User.Username == null || this.User.Email == null || this.User.Password == null) {
+            if(this.User.Username === null || this.User.Email === null || this.User.Password === null) {
               throw new Error("Username or Email or Password is null");
             }
 
