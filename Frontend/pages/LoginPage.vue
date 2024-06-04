@@ -75,13 +75,12 @@ export default {
 
         this.User = User;
     },
-
     async logAccount() {
         try {
-            if(this.Email == null || this.Password == null) {
+            if(this.User.Email == null || this.User.Password == null) {
               throw new Error("Email or Password is null");
             }
-            userResponse = await user.login(this.Email, this.Password);
+            userResponse = await user.login(this.User);
             console.log(userResponse);
             this.resetUserForm();
         } catch(error) {
