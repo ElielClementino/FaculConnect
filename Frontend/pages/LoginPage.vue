@@ -10,27 +10,17 @@
         </div>
           <div class="text-center" style="line-height:10vh;">
         <h2 class="text-h4 text-style">Seja bem-vindo!</h2>
-            <p class="text-style">Acesse a sua conta agora mesmo.</p>
+            <p class="text-style">Ainda não possue uma conta ? Crie agora mesmo.</p>
             <v-btn rounded class="mt-5 pa-6 text-style" width=150 outlined>
-              Entrar
+              Cadastrar
             </v-btn>
           </div>
         </v-col>
         <v-col cols="7" class="pa-4 d-flex justify-center align-center bg-white">
           <div>
-            <h2 class="create-account">Crie sua Conta</h2>
-            <p class="create-account">Preencha os campos abaixo para criar a sua conta.</p>
+            <h2 class="create-account">Acesse sua Conta</h2>
+            <p class="create-account">Preencha os campos abaixo para entrar em sua conta.</p>
             <v-form>
-              <v-text-field
-                background-color="#BAB8B8"
-                color="#000000"
-                placeholder="Preencha o nome de usuário"
-                label="Nome de usuário"
-                prepend-inner-icon="mdi-account"
-                filled
-                dark
-                v-model="form.nomeUsuario"
-              ></v-text-field>
               <v-text-field
                 background-color="#BAB8B8"
                 color="#000000"
@@ -52,8 +42,9 @@
               ></v-text-field>
               <div class="text-center">
                 <v-btn rounded class="pa-6 mt-5 text-style" color="#010101">
-                  Cadastrar
+                  Entrar
                 </v-btn>
+                <span class="d-block mt-4"><a style="color: #010101" class="text-style">Esqueceu a senha ?</a></span>
               </div>
             </v-form>
           </div>
