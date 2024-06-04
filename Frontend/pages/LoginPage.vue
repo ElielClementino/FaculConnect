@@ -28,7 +28,7 @@
                 label="Email"
                 prepend-inner-icon="mdi-email"
                 filled
-                v-model="form.email"
+                v-model="User.Email"
               ></v-text-field>
               <v-text-field
                 background-color="#BAB8B8"
@@ -38,10 +38,10 @@
                 prepend-inner-icon="mdi-lock"
                 filled
                 type="password"
-                v-model="form.senha"
+                v-model="User.Password"
               ></v-text-field>
               <div class="text-center">
-                <v-btn rounded class="pa-6 mt-5 text-style" color="#010101">
+                <v-btn rounded class="pa-6 mt-5 text-style" color="#010101" @click="logAccount">
                   Entrar
                 </v-btn>
                 <span class="d-block mt-4"><a style="color: #010101" class="text-style">Esqueceu a senha ?</a></span>
@@ -55,14 +55,38 @@
 </template>
 
 <script>
+import user from "../api/user.js"
+
 export default {
   data() {
     return {
-      form: {
-        nomeUsuario: '',
-        email: '',
-        senha: ''
+      User: {
+        Email: '',
+        Password: ''
       }
+    }
+  },
+  methods: {
+    resetUserForm() {
+        let User = {
+            Email: null,
+            Password: null
+        }
+
+        this.User = User;
+    },
+
+    async logAccount() {
+        try {
+            if(this.Email == null || this.Password == null) {
+              throw new Error("Email or Password is null");
+            }
+            userResponse = await user.login(this.Email, this.Password);
+            console.log(userResponse);
+            this.resetUserForm();
+        } catch(error) {
+            console.error(error);
+        }
     }
   }
 }
