@@ -1,19 +1,21 @@
 import api from "./config.js"
 
 export default {
-    login: (userInfo) => {
+    login: (User) => {
         return new Promise((resolve, reject) => {
-            api.post("login", userInfo)
+            api.post("login", User)
             .then((response) => {
+                debugger
                 return resolve(response.data);
             }).catch((error) => {
+                debugger
                 return reject(error);
             })
         })
     },
-    register: (userInfo) => {
+    register: (User) => {
         return new Promise((resolve, reject) => {
-            api.post("register", userInfo)
+            api.post("register", User)
             .then((response) => {
                 return resolve(response.data);
             }). catch((error) => {
