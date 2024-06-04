@@ -5,10 +5,8 @@ export default {
         return new Promise((resolve, reject) => {
             api.post("login", User)
             .then((response) => {
-                debugger
                 return resolve(response.data);
             }).catch((error) => {
-                debugger
                 return reject(error);
             })
         })

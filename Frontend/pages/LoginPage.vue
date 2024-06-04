@@ -11,7 +11,7 @@
           <div class="text-center" style="line-height:10vh;">
         <h2 class="text-h4 text-style">Seja bem-vindo!</h2>
             <p class="text-style">Ainda não possue uma conta ? Crie agora mesmo.</p>
-            <v-btn rounded class="mt-5 pa-6 text-style" width=150 outlined>
+            <v-btn rounded class="mt-5 pa-6 text-style" width=150 outlined @click="redirectToRegister">
               Cadastrar
             </v-btn>
           </div>
@@ -56,6 +56,7 @@
 
 <script>
 import user from "../api/user.js"
+import { useRouter } from 'vue-router';
 
 export default {
   data() {
@@ -75,12 +76,15 @@ export default {
 
         this.User = User;
     },
+    redirectToRegister() {
+      this.$router.push('/RegisterPage');
+    },
     async logAccount() {
         try {
             if(this.User.Email == null || this.User.Password == null) {
               throw new Error("Email or Password is null");
             }
-            userResponse = await user.login(this.User);
+            let userResponse = await user.login(this.User);
             console.log(userResponse);
             this.resetUserForm();
         } catch(error) {

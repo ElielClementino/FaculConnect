@@ -11,7 +11,7 @@
           <div class="text-center" style="line-height:10vh;">
         <h2 class="text-h4 text-style">Seja bem-vindo!</h2>
             <p class="text-style">Acesse a sua conta agora mesmo.</p>
-            <v-btn rounded class="mt-5 pa-6 text-style" width=150 outlined>
+            <v-btn rounded class="mt-5 pa-6 text-style" width=150 outlined @click="redirectToLogin">
               Entrar
             </v-btn>
           </div>
@@ -51,7 +51,7 @@
                 v-model="User.Password"
               ></v-text-field>
               <div class="text-center">
-                <v-btn rounded class="pa-6 mt-5 text-style" color="#010101">
+                <v-btn rounded class="pa-6 mt-5 text-style" color="#010101" @click="registerAccount">
                   Cadastrar
                 </v-btn>
               </div>
@@ -65,6 +65,8 @@
 
 <script>
 import user from "../api/user.js"
+import { useRouter } from 'vue-router';
+
 export default {
   data() {
     return {
@@ -85,15 +87,19 @@ export default {
 
         this.User = User;
     },
+    redirectToLogin() {
+      this.$router.push('/LoginPage');
+    },
      async registerAccount() {
         try {
             if(this.User.Username == null || this.User.Email == null || this.User.Password == null) {
               throw new Error("Username or Email or Password is null");
             }
 
-            userResponse = await user.register(this.User);
+            let userResponse = await user.register(this.User);
             console.log(userResponse);
             this.resetUserForm();
+            this.redirectToLogin();
         } catch(error) {
             console.error(error);
         }
