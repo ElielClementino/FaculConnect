@@ -1,11 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-  baseURL: "http://localhost:5173/",
-  xsrfCookieName: "csrftoken",
-  xsrfHeaderName: "X-CSRFToken",
-  withCredentials: true,
-  withXSRFToken: true,
+  baseURL: "http://localhost:5165/",
 })
 
 export default api
