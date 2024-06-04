@@ -29,7 +29,7 @@
                 prepend-inner-icon="mdi-account"
                 filled
                 dark
-                v-model="form.nomeUsuario"
+                v-model="User.Username"
               ></v-text-field>
               <v-text-field
                 background-color="#BAB8B8"
@@ -38,7 +38,7 @@
                 label="Email"
                 prepend-inner-icon="mdi-email"
                 filled
-                v-model="form.email"
+                v-model="User.Email"
               ></v-text-field>
               <v-text-field
                 background-color="#BAB8B8"
@@ -48,7 +48,7 @@
                 prepend-inner-icon="mdi-lock"
                 filled
                 type="password"
-                v-model="form.senha"
+                v-model="User.Password"
               ></v-text-field>
               <div class="text-center">
                 <v-btn rounded class="pa-6 mt-5 text-style" color="#010101">
@@ -64,14 +64,39 @@
 </template>
 
 <script>
+import user from "../api/user.js"
 export default {
   data() {
     return {
-      form: {
-        nomeUsuario: '',
-        email: '',
-        senha: ''
+      User: {
+        Username: '',
+        Email: '',
+        Password: ''
       }
+    }
+  },
+  methods: {
+    resetUserForm() {
+        let User = {
+            Username: null,
+            Email: null,
+            Password: null
+        }
+
+        this.User = User;
+    },
+     async registerAccount() {
+        try {
+            if(this.User.Username == null || this.User.Email == null || this.User.Password == null) {
+              throw new Error("Username or Email or Password is null");
+            }
+
+            userResponse = await user.register(this.User);
+            console.log(userResponse);
+            this.resetUserForm();
+        } catch(error) {
+            console.error(error);
+        }
     }
   }
 }
