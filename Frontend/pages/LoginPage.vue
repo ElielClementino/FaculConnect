@@ -55,6 +55,7 @@
 </template>
 
 <script>
+
 import user from "../api/user.js"
 import { useRouter } from 'vue-router';
 
@@ -62,8 +63,8 @@ export default {
   data() {
     return {
       User: {
-        Email: '',
-        Password: ''
+        Email: null,
+        Password: null
       }
     }
   },
@@ -81,12 +82,14 @@ export default {
     },
     async logAccount() {
         try {
-            if(this.User.Email == null || this.User.Password == null) {
+            if(this.User.Email === null || this.User.Password === null) {
               throw new Error("Email or Password is null");
             }
             let userResponse = await user.login(this.User);
-            console.log(userResponse);
+            this.$store.dispatch('setLoggedUser', userResponse)
+            console.log(userResponse)
             this.resetUserForm();
+            this.$router.push('/StudentRegisterPage');
         } catch(error) {
             console.error(error);
         }
