@@ -4,7 +4,7 @@ namespace Models;
 
 public class Student {
 
-    public Student(string firstName, string surname, string phoneNumber, string cpf, string address, DateTime birthDate) {
+    public Student(string firstName, string surname, string phoneNumber, string cpf, string address, string birthDate) {
         FirstName = firstName;
         Surname = surname;
         PhoneNumber = phoneNumber;
@@ -37,7 +37,7 @@ public class Student {
     public string Address { get; set; }
 
     [Required]
-    public DateTime BirthDate { get; set; }
+    public string BirthDate { get; set; }
 
     public int? UserId { get; set; }
 
