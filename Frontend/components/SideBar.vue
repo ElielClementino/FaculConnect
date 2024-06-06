@@ -27,10 +27,10 @@
             </v-list-item>
             <v-list-item class="pt-6" link>
                 <v-list-item-icon>
-                    <v-icon x-large>
+                    <v-icon @click="redirectToCourses" x-large>
                         mdi-bookshelf
                     </v-icon>
-                    <v-list-item-title class="title text-style ml-4 mt-2">Cursos</v-list-item-title>
+                    <v-list-item-title @click="redirectToCourses" lass="title text-style ml-4 mt-2">Cursos</v-list-item-title>
             </v-list-item-icon>
             </v-list-item>
         </v-list>
@@ -38,6 +38,15 @@
     </v-navigation-drawer>
 </template>
 
+<script>
+export default {
+    methods: {
+        redirectToCourses() {
+            this.$router.push('/CoursesPage');
+        }
+    }
+}
+</script>
 <style scoped>
 
 .top-title {
