@@ -32,6 +32,21 @@ namespace Endpoints {
                     return Results.Problem($"Ocorreu um erro ao listar os cursos: {e}");
                 }
             });
+            CourseEndpoint.MapGet("{courseId:int}", async (int courseId, AppDbContext context, CancellationToken ct) => {
+                try {
+                    var courseService = new CourseService(context);
+                    var result = await courseService.GetCourseAsync(courseId, ct);
+
+                    if (result.IsSuccess) {
+                        return Results.Ok(result.CourseDto);
+                    } else {
+                        return Results.NotFound(result.ErrorMessage);
+                    }
+                } catch (Exception e) {
+                    return Results.Problem($"Ocorreu um erro ao buscar o curso: {e.Message}");
+                }
+            });
+
         }
     }
 }

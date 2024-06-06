@@ -36,5 +36,20 @@ namespace Services {
 
             return courses;
         }
+
+        public async Task<(bool IsSuccess, CourseDto? CourseDto, string? ErrorMessage)> GetCourseAsync(int courseId, CancellationToken ct) {
+            try {
+                var course = await _context.Courses.FindAsync(new object[] { courseId }, ct);
+
+                if (course == null) {
+                    return (false, null, "Curso não encontrado");
+                }
+
+                var courseDto = new CourseDto(course.CourseId, course.Name, course.Description, course.Price, course.Availability);
+                return (true, courseDto, null);
+            } catch (Exception e) {
+                return (false, null, $"Ocorreu um erro ao buscar o curso: {e.Message}");
+            }
+        }
     }
 }
