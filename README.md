@@ -11,7 +11,11 @@ Na raiz do projeto é possível encontrar o seguinte arquivo:
 > - Esse é o diagrama inicial em que o banco de dados foi visionado.
 Também é possível encontrar o seguinte diretório:
 2. PagesSketch  
-> - Dentro desse diretório está o designer inicial das telas, feito utilizando o figma.  
+> - Dentro desse diretório está o designer inicial das telas, feito utilizando o figma.
+
+Gif das funcionalidades do projeto:
+![FaculConnect](https://github.com/ElielClementino/FaculConnect/assets/94757087/fe7b03f0-141b-4066-be49-e040e0502d8f)
+
 ## Setup do projeto
 Na raiz do projeto existe um arquivo chamado .env_sample, é necessário mudar o nome do arquivo para .env, pois o container que sobe o postgres lê as configurações desse arquivo.  
 `$ cp .env_sample .env`  
