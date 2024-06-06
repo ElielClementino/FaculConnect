@@ -21,7 +21,7 @@ Na raiz do projeto existe um arquivo chamado .env_sample, é necessário mudar o
 `$ cp .env_sample .env`  
 Também na raiz do projeto, tem um outro arquivo chamado appsettings_sample.json, é necessário mudar o nome do arquivo para appsettings.json, pois as credenciais do entity framework se encontram lá.  
 `$ cp appsettings_sample.json appsettings.json`  
-Agora, antes de rodar o projeto, é necessário subir o postgres, para isso, usaremos:
+Agora, antes de rodar o projeto, será necessário subir o postgres, para isso, usaremos:
 ### Docker
 1. No terminal rode o seguinte comando:  
 `$ docker-compose up`
@@ -29,14 +29,14 @@ Agora, antes de rodar o projeto, é necessário subir o postgres, para isso, usa
 `$ docker ps`
 ## Instalando dependências
 Antes de tentar rodar o projeto, também é necessário instalar as dependências. Na raiz do projeto, será encontrado o arquivo FaculConnect.csproj, arquivo
-este que guarda as libs externas que foram usadas nesse projeto. Para poder configurar-las rode o seguinte comando:  
+este que guarda as libs externas que foram usadas nesse projeto. Para configurar-las rode o seguinte comando:  
 `$ dotnet restore`  
-Agora, é necessário baixar as dependências do front do projeto. Para isso, entre na pasta Frontend, as dependências se encontram no arquivo package-lock.json.
-para poder instalar as dependências, rode o seguinte comando:  
+Agora será necessário baixar as dependências do front do projeto. Para isso, entre na pasta Frontend, as dependências se encontram no arquivo package-lock.json.
+Para instalar as dependências, rode o seguinte comando:  
 > - `$ cd Frontend/`  
 > - `$ npm install`  
 ## Rodando o projeto
-Após todas as configurações terem sido realizadas, agora podemos rodar o projeto. Para subir o back, utilize o comando:
+Após todas as configurações serem realizadas, podemos rodar o projeto. Para subir o back, utilize o comando:
 `$ dotnet run`  
 E para subir o front, utilize o comando:
 `$ npm run dev`
