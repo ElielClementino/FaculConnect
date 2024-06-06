@@ -21,4 +21,14 @@ export default {
             })
         })
     },
+    retrieve: (UserId) => {
+        return new Promise((resolve, reject) => {
+            api.get(`student/${UserId}`)
+            .then((response) => {
+                return resolve(response.data);
+            }).catch((error) => {
+                return reject(error);
+            })
+        })
+    },
 }
