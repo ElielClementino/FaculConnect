@@ -21,7 +21,7 @@ Na raiz do projeto existe um arquivo chamado .env_sample, é necessário mudar o
 `$ cp .env_sample .env`  
 Também na raiz do projeto, tem um outro arquivo chamado appsettings_sample.json, é necessário mudar o nome do arquivo para appsettings.json, pois as credenciais do entity framework se encontram lá.  
 `$ cp appsettings_sample.json appsettings.json`  
-Agora, antes de rodar o projeto, é necessário subir subir o postgres, para isso, usaremos:
+Agora, antes de rodar o projeto, é necessário subir o postgres, para isso, usaremos:
 ### Docker
 1. No terminal rode o seguinte comando:  
 `$ docker-compose up`
