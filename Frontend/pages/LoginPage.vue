@@ -57,6 +57,7 @@
 <script>
 
 import user from "../api/user.js"
+import student from "../api/student.js"
 import { useRouter } from 'vue-router';
 
 export default {
@@ -85,11 +86,18 @@ export default {
             if(this.User.Email === null || this.User.Password === null) {
               throw new Error("Email or Password is null");
             }
+
             let userResponse = await user.login(this.User);
             this.$store.dispatch('setLoggedUser', userResponse)
-            console.log(userResponse)
             this.resetUserForm();
-            this.$router.push('/StudentRegisterPage');
+
+            try {
+                let isStudent = await student.retrieve(userResponse.userId);
+                this.$router.push('/CoursesPage');
+            } catch (error) {
+                console.log("This user isn't a student ", error);
+                this.$router.push('/StudentRegisterPage');
+            }
         } catch(error) {
             console.error(error);
         }
