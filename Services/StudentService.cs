@@ -50,5 +50,23 @@ namespace Services {
                 return (false, $"Ocorreu um erro ao atualizar o curso do estudante: {e.Message}");
             }
         }
+
+        public async Task<(bool IsSuccess, StudentDto ? StudentDto, string? ErrorMessage)> RetrieveStudentAsync(int userId, CancellationToken ct) {
+            try {
+                var student = await _context
+                .Students
+                .FirstOrDefaultAsync(student => student.UserId == userId, ct);
+
+                if (student == null) {
+                    return (false, null, $"O estudante com o id de usuário {userId} não foi encontrado.");
+                }
+
+                var studentDto = new StudentDto(student.StudentId, student.FirstName, student.Surname, student.UserId);
+
+                return (true, studentDto, null);
+            } catch (Exception e) {
+                return (false, null, $"Ocorreu um erro ao buscar pelo estudante: {e.Message}");
+            }
+        }
     }
 }

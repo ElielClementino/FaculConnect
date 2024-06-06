@@ -35,6 +35,20 @@ namespace Endpoints {
                     return Results.Problem($"Ocorreu um erro ao atualizar o curso do estudante: {e}");
                 }
             });
+            studentEndpoint.MapGet("{userId}", async (AppDbContext context, int userId, CancellationToken ct) => {
+                try {
+                    var studentService = new StudentService(context);
+                    var result = await studentService.RetrieveStudentAsync(userId, ct);
+
+                    if (result.IsSuccess) {
+                        return Results.Ok(result.StudentDto);
+                    }
+
+                    return Results.Problem(detail: result.ErrorMessage);
+                } catch (Exception e) {
+                    return Results.Problem($"Ocorreu um erro ao buscar pelo estudante: {e}");
+                }
+            });
         }
     }
 }
