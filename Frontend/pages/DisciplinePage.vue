@@ -1,7 +1,7 @@
 <template>
   <v-app style="background-color:#ffffff;">
     <SideBar/>
-    <NavBar NavTitle="ANÁLISE E DESENVOLVIMENTO DE SISTEMAS"/>
+    <NavBar :NavTitle="courseName"/>
     <v-container class="main-container">
         <div class="discipline-div">
         <h1 class="color-black text-style">DISCIPLINAS</h1>
@@ -51,6 +51,7 @@
 import discipline from '../api/discipline.js'
 import student from "../api/student.js"
 import lesson from '../api/lesson.js'
+import course from '../api/course.js'
 
 export default {
   data() {
@@ -61,6 +62,7 @@ export default {
       },
       loading: false,
       disciplinesInfo: [],
+      courseName: null,
       lessonsDiscipline1:[],
       lessonsDiscipline2:[],
       semester: 1
@@ -77,6 +79,8 @@ export default {
         let result = await student.retrieve(1)
         this.studentInfo.StudentId = result.studentId;
         this.studentInfo.CourseId = result.courseId;
+        let response = await course.getCourse(this.studentInfo.CourseId)
+        this.courseName = response.name
       } catch(error) {
         console.log(error)
       }

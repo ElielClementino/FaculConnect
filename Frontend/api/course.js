@@ -10,5 +10,15 @@ export default {
                 return reject(error)
             })
         })
+    },
+    getCourse: (disciplineId) => {
+        return new Promise((resolve, reject) => {
+            api.get(`course/${disciplineId}`)
+            .then((response) => {
+                return resolve(response.data)
+            }).catch((error) => {
+                return reject(error)
+            })
+        })
     }
 }
