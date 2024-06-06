@@ -141,6 +141,9 @@ export default {
 
       this.studentProfile = studentProfile;
     },
+    redirectToCourses() {
+        this.$router.push('/CoursesPage');
+    },
     async registerStudent() {
         try {
             if(
@@ -158,6 +161,7 @@ export default {
             let result = await student.register(this.studentProfile);
             console.log(result);
             this.resetStudentForm()
+            this.redirectToCourses()
         } catch(error) {
             console.error(error);
         }

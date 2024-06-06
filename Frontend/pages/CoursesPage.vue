@@ -85,7 +85,7 @@ export default {
         await this.getStudent()
         this.studentInfo.CourseId = course.courseId
         let updatedStudentCourse = await student.update(this.studentInfo)
-        console.log(updatedStudentCourse)
+        this.$router.push('/DisciplinePage');
       } catch(error) {
         console.log(error)
       }
