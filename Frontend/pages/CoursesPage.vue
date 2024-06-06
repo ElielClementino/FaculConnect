@@ -7,7 +7,7 @@
     >
       <v-card
         class="course-card"
-        v-for="course in courses" :key="course.id"
+        v-for="course in courses" :key="course.courseId"
       >
         <v-card-text class="bg-black card-content" style="border-radius:25px;">
           <div style="text-align:center;" class="text-style color-white">
@@ -27,6 +27,7 @@
             style="padding:25px;"
             color="#0856CA"
             :class="course.availability ? '': 'disabled-btn'"
+            @click="updateStudentCourse(course)"
           >
             <p style="margin-bottom:0" class="text-style color-white">Se inscrever</p>
           </v-btn>
@@ -41,11 +42,16 @@
 <script>
 
 import course from "../api/course.js"
+import student from "../api/student.js"
 
 export default {
   data() {
     return {
-      courses: {}
+      courses: {},
+      studentInfo: {
+        StudentId: null,
+        CourseId: null,
+      }
     }
   },
   async mounted() {
@@ -58,6 +64,30 @@ export default {
         console.log(this.courses)
       } catch(error) {
         console.error(error)
+      }
+    },
+    async getStudent() {
+      try {
+        const LoggedUserId = await this.$store.state.loggedUser.userId
+        let result = await student.retrieve(LoggedUserId)
+        this.studentInfo.StudentId = result.studentId;
+        console.log(this.studentInfo.StudentId)
+        console.log(result)
+      } catch(error) {
+        console.log(error)
+      }
+    },
+    async updateStudentCourse(course) {
+      try{
+        if(!course.availability) {
+          throw new Error("This course is not available")
+        }
+        await this.getStudent()
+        this.studentInfo.CourseId = course.courseId
+        let updatedStudentCourse = await student.update(this.studentInfo)
+        console.log(updatedStudentCourse)
+      } catch(error) {
+        console.log(error)
       }
     }
   }
