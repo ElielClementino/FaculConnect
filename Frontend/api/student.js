@@ -11,4 +11,14 @@ export default {
             })
         })
     },
+    update: (studentCourse) => {
+        return new Promise((resolve, reject) => {
+            api.put("student/update-course", studentCourse)
+            .then((response) => {
+                return resolve(response.data);
+            }).catch((error) => {
+                return reject(error);
+            })
+        })
+    },
 }
