@@ -22,7 +22,7 @@ namespace Services {
                 await _context.Students.AddAsync(newStudent, ct);
                 await _context.SaveChangesAsync(ct);
 
-                var studentDto = new StudentDto(newStudent.StudentId, newStudent.FirstName, newStudent.Surname, newStudent.UserId);
+                var studentDto = new StudentDto(newStudent.StudentId, newStudent.FirstName, newStudent.Surname, newStudent.UserId, newStudent.CourseId);
 
                 return (true, studentDto, null);
             } catch (Exception e) {
@@ -61,7 +61,7 @@ namespace Services {
                     return (false, null, $"O estudante com o id de usuário {userId} não foi encontrado.");
                 }
 
-                var studentDto = new StudentDto(student.StudentId, student.FirstName, student.Surname, student.UserId);
+                var studentDto = new StudentDto(student.StudentId, student.FirstName, student.Surname, student.UserId, student.CourseId);
 
                 return (true, studentDto, null);
             } catch (Exception e) {
