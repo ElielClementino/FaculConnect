@@ -21,6 +21,20 @@ namespace Endpoints {
                     return Results.Problem($"Ocorreu um erro ao efetuar o cadastro  do estudante: {e}");
                 }
             });
+            studentEndpoint.MapPut("/update-course", async (UpdateStudentCourseRequest request, AppDbContext context, CancellationToken ct) => {
+                try {
+                    var studentService = new StudentService(context);
+                    var result = await studentService.UpdateStudentCourseAsync(request.StudentId, request.CourseId, ct);
+
+                    if (result.IsSuccess) {
+                        return Results.Ok("Curso do estudante atualizado com sucesso.");
+                    }
+
+                    return Results.Problem(detail: result.ErrorMessage);
+                } catch (Exception e) {
+                    return Results.Problem($"Ocorreu um erro ao atualizar o curso do estudante: {e}");
+                }
+            });
         }
     }
 }

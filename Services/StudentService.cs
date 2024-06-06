@@ -2,6 +2,7 @@ using Data;
 using Dtos;
 using Models;
 using Requests;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services {
 
@@ -27,6 +28,27 @@ namespace Services {
             } catch (Exception e) {
                 return (false, null, $"Ocorreu um erro ao criar o estudante: {e.Message}");
             };
+        }
+
+        public async Task<(bool IsSuccess, string? ErrorMessage)> UpdateStudentCourseAsync(int studentId, int courseId, CancellationToken ct) {
+            try {
+                var student = await _context
+                .Students
+                .FindAsync(new object[] { studentId }, ct);
+
+                if (student == null) {
+                    return (false, $"O estudante com o id {studentId} não foi encontrado.");
+                }
+
+                student.CourseId = courseId;
+
+                _context.Students.Update(student);
+                await _context.SaveChangesAsync(ct);
+
+                return (true, null);
+            } catch (Exception e) {
+                return (false, $"Ocorreu um erro ao atualizar o curso do estudante: {e.Message}");
+            }
         }
     }
 }
