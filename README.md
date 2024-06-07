@@ -48,4 +48,4 @@ E para subir o front, utilize o comando:
 > - http://localhost:3000/CoursesPage (Página que lista as informações dos cursos disponíveis)  
 > - http://localhost:3000/DisciplinePage (Página que lista as disciplinas e as aulas dos cursos da plataforma)  
 ### Back-end
-> - http://localhost:5165/swagger/index.html (Página a onde está listado todos os endpoints do projeto, e quais métodos eles aceitam. Além de ser possível testar o endpoint diretamente pelo swagger)
+> - http://localhost:5165/swagger/index.html (Página onde está listado todos os endpoints do projeto, e quais métodos eles aceitam. Além de ser possível testar o endpoint diretamente pelo swagger)
